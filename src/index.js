@@ -1,5 +1,5 @@
 import timestamp from './utils/timestamp';
-import './index.css';
+import './index.scss';
 
 const now = timestamp();
 const blastFromPast = timestamp('2018-12-24');
