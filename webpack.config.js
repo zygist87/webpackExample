@@ -1,16 +1,16 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: "./src/index.js"
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: '[name].[hash].js',
+    path: path.resolve(__dirname, "build"),
+    filename: "[name].[hash].js"
   },
-  mode: 'production',
+  mode: "production",
   module: {
     rules: [
       {
@@ -18,22 +18,28 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { hmr: process.env.NODE_ENV === 'development' },
+            options: { hmr: process.env.NODE_ENV === "development" }
           },
-          'css-loader',
-          'sass-loader',
-        ],
-      },
-    ],
+          "css-loader",
+          "sass-loader"
+        ]
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './static/index.html',
+      template: "./static/index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].css',
-      ignoreOrder: false,
-    }),
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].css",
+      ignoreOrder: false
+    })
   ],
+  devServer: {
+    port: 9000,
+    compress: true,
+    publicPath: "/",
+    historyApiFallback: true
+  }
 };
